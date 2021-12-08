@@ -1,5 +1,6 @@
-# NanoML: a simple OCaml parser and type checker in Haskell
+# Nanomaly $\approx$ NanoML
 
+A simple OCaml parsera and (static + dynamic) type checker in Haskell
 
 ## Compile and run
 
