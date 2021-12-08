@@ -8,6 +8,7 @@
 module NanoML.Monad where
 
 import Control.Monad.Except
+import Control.Monad.Fail
 import Control.Monad.Random.Strict (RandT, evalRandT, liftRandT, runRandT, MonadRandom)
 import Control.Monad.Reader.Class
 import Control.Monad.State.Strict
@@ -31,6 +32,12 @@ data NanoState = NanoState
 newtype Eval a = EvalM (RandT StdGen (ExceptT NanoError (State NanoState)) a)
   deriving (Functor, Applicative, Monad, MonadFix
            ,MonadError NanoError, MonadRandom)
+
+-- MonadFail cannot be derived due to no instance for Functor.Identity.Identity
+-- instance MonadFail Eval
+
+instance MonadFail Eval where
+  fail  = error 
 
 -- instance MonadError e m => MonadError e (RandT g m) where
 --   throwError = lift . throwError

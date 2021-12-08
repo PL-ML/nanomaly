@@ -4,7 +4,7 @@ module NanoML.Misc where
 import           Control.Arrow
 import           Control.DeepSeq
 import           Control.Monad
-import           Data.Either
+import           Data.Either hiding (fromRight)
 import           Data.List
 import           Data.Map         (Map)
 import qualified Data.Map         as Map

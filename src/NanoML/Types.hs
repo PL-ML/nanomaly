@@ -24,6 +24,7 @@ import           Control.DeepSeq
 import           Control.Exception            hiding (TypeError)
 import           Control.Monad
 import           Control.Monad.Except
+import           Control.Monad.Fail
 import           Control.Monad.Random
 import           Control.Monad.Reader
 import           Control.Monad.State
@@ -70,6 +71,7 @@ type MonadEval m = ( MonadError NanoError m
                    -- , MonadWriter [Doc] m
                    , MonadState EvalState m
                    , MonadFix m, MonadRandom m
+                   , MonadFail m
                    )
 
 type Var = String
@@ -236,7 +238,7 @@ retrieveConstraints :: MonadEval m => TVar -> m (Set Constraint)
 retrieveConstraints v = do
   cs <- gets stConstraintDeps
   let c = fromMaybe mempty $ Map.lookup v cs
-  -- traceShowM ("retrieveConstraints", v, c)
+  traceShowM ("retrieveConstraints", v, c, cs)
   return c
 
 emitCts :: MonadEval m => [Constraint] -> m ()
@@ -629,9 +631,12 @@ instance Eq Env where
 instance Ord Env where
   compare e1 e2 = compare (envId e1) (envId e2)
 
+instance Semigroup Env where
+  (<>) = joinEnv
+
 instance Monoid Env where
   mempty  = emptyEnv
-  mappend = joinEnv
+--  mappend = joinEnv
 
 instance Hashable Env where
   hashWithSalt salt env = hashWithSalt salt (envId env)
