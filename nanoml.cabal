@@ -65,11 +65,11 @@ executable nano-check
   default-language: Haskell2010
   build-depends: base >= 4.7 && < 5, nanoml, transformers
 
--- executable ocaml-to-json
---   main-is: OcamlToJSON.hs
---   hs-source-dirs: bin
---   default-language: Haskell2010
---   build-depends: base >= 4.7 && < 5, aeson, bytestring, nanoml
+executable ocaml-to-json
+  main-is: OcamlToJSON.hs
+  hs-source-dirs: bin
+  default-language: Haskell2010
+  build-depends: base >= 4.7 && < 5, aeson, bytestring, nanoml
 
 -- executable generate-bad-asts
 --   main-is: Generate.hs
