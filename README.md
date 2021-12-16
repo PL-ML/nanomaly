@@ -16,5 +16,7 @@ stack build
 ### Parse OCaml Code
 
 ```
-stack exec -- ocaml-to-json  < prog.ml  > prog.json
+stack exec -- ocaml-to-json  < prog.ml 
+
+stack exec -- ocaml-to-seq   < prog.ml 
 ```
