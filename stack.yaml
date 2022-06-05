@@ -5,11 +5,12 @@ packages:
 extra-deps:
 - dotgen-0.4.2
 - fgl-visualize-0.1.0.1
-- alex-3.2.2
+- parallel-io-0.3.5
+#- alex-3.2.2
 #- parsers-0.12.5
 #- happy-1.19.6
 # - grenade-0.1.0
 #resolver: lts-10.9
 #resolver: lts-13.19
-resolver: lts-14.20
-#resolver: lts-18.15
+#resolver: lts-14.20
+resolver: lts-18.19
