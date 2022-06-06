@@ -238,7 +238,7 @@ retrieveConstraints :: MonadEval m => TVar -> m (Set Constraint)
 retrieveConstraints v = do
   cs <- gets stConstraintDeps
   let c = fromMaybe mempty $ Map.lookup v cs
-  traceShowM ("retrieveConstraints", v, c, cs)
+  -- traceShowM ("retrieveConstraints", v, c, cs)
   return c
 
 emitCts :: MonadEval m => [Constraint] -> m ()
